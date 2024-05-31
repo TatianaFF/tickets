@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Tickets</string>
+    <string name="tickets_label">Авиабилеты</string>
+    <string name="hotels_label">Отели</string>
+    <string name="shorter_label">Короче</string>
+    <string name="subscriptions_label">Подписки</string>
+    <string name="profile_label">Профиль</string>
+
+    <string name="title_tickets_fragment">Поиск дешевых авиабилетов</string>
+    <string name="title_section_music">Музыкально отлететь</string>
+    <string name="from">Откуда - Москва</string>
+    <string name="to">Куда - Турция</string>
+
+    <string name="hard_way">Сложный маршрут</string>
+    <string name="anywhere">Куда угодно</string>
+    <string name="weekend">Выходные</string>
+    <string name="hot_tickets">Горячие билеты</string>
+
+    <string name="istanbul">Стамбул</string>
+    <string name="sochi">Сочи</string>
+    <string name="phuket">Пхукет</string>
+    <string name="placeholder_recommendations">Популярное направление</string>
+    <string name="flights_title">Прямые рейсы</string>
+
+</resources>

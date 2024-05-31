@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/tickets_fragment">
+
+    <fragment
+        android:id="@+id/tickets_fragment"
+        android:name="com.example.tickets.screens.tickets.TicketsFragment"
+        android:label="TicketsFragment" >
+        <action
+            android:id="@+id/action_tickets_fragment_to_hardWayFragment"
+            app:destination="@id/hardWayFragment" />
+        <action
+            android:id="@+id/action_tickets_fragment_to_weekendFragment"
+            app:destination="@id/weekendFragment" />
+        <action
+            android:id="@+id/action_tickets_fragment_to_hotTicketsFragment"
+            app:destination="@id/hotTicketsFragment" />
+        <action
+            android:id="@+id/action_tickets_fragment_to_ticketRecommendationsFragment"
+            app:destination="@id/ticketRecommendationsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/hotels_fragment"
+        android:name="com.example.tickets.screens.hotels.HotelsFragment"
+        android:label="HotelsFragment" />
+    <fragment
+        android:id="@+id/profile_fragment"
+        android:name="com.example.tickets.screens.profile.ProfileFragment"
+        android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/shorter_fragment"
+        android:name="com.example.tickets.screens.shorter.ShorterFragment"
+        android:label="ShorterFragment" />
+    <fragment
+        android:id="@+id/subscriptions_fragment"
+        android:name="com.example.tickets.screens.subscriptions.SubscriptionsFragment"
+        android:label="SubscriptionsFragment" />
+    <fragment
+        android:id="@+id/hardWayFragment"
+        android:name="com.example.tickets.screens.tickets.hints.HardWayFragment"
+        android:label="fragment_hard_way"
+        tools:layout="@layout/fragment_hard_way" >
+    </fragment>
+    <fragment
+        android:id="@+id/weekendFragment"
+        android:name="com.example.tickets.screens.tickets.hints.WeekendFragment"
+        android:label="fragment_weekend"
+        tools:layout="@layout/fragment_weekend" />
+    <fragment
+        android:id="@+id/hotTicketsFragment"
+        android:name="com.example.tickets.screens.tickets.hints.HotTicketsFragment"
+        android:label="fragment_hot_tickets"
+        tools:layout="@layout/fragment_hot_tickets" />
+    <fragment
+        android:id="@+id/ticketRecommendationsFragment"
+        android:name="com.example.tickets.screens.tickets.ticket_recommendations.TicketRecommendationsFragment"
+        android:label="fragment_ticket_recommendations"
+        tools:layout="@layout/fragment_ticket_recommendations" >
+
+        <argument
+            android:name="cityFrom"
+            app:argType="string"
+            android:defaultValue=""/>
+
+        <argument
+            android:name="cityTo"
+            app:argType="string"
+            android:defaultValue=""/>
+
+    </fragment>
+
+</navigation>

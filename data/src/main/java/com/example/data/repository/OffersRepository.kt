@@ -2,6 +2,7 @@ package com.example.data.repository
 
 import com.example.models.Flight
 import com.example.models.Offer
+import com.example.models.Ticket
 import dagger.Provides
 import kotlinx.coroutines.flow.Flow
 import okhttp3.ResponseBody
@@ -12,4 +13,6 @@ interface OffersRepository {
     fun getOffers(): Flow<List<Offer>>
 
     fun getRecommendedFlights(): Flow<List<Flight>>
+
+    fun getTickets(): Flow<List<Ticket>>
 }

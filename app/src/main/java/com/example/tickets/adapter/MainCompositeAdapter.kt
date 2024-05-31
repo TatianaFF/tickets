@@ -1,4 +1,4 @@
-package com.example.tickets.screens.tickets.adapter
+package com.example.tickets.adapter
 
 import android.util.SparseArray
 import android.view.ViewGroup

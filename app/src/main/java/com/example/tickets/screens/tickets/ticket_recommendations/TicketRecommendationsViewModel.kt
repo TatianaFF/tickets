@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TicketRecommendationsViewModel  @Inject constructor(
-    private val getOffersUseCase: GetRecommendedFlightsUseCase
+    private val getFlightsUseCase: GetRecommendedFlightsUseCase
 ) : ViewModel() {
     private val _flights = MutableLiveData<List<Flight>>()
     val flights: LiveData<List<Flight>>
@@ -29,7 +29,7 @@ class TicketRecommendationsViewModel  @Inject constructor(
 
     private fun fetchFlights() {
         viewModelScope.launch {
-            getOffersUseCase.execute()
+            getFlightsUseCase.execute()
                 .onStart { Log.e("start", "") }
                 .onEach { flightsServer ->
                     _flights.postValue(flightsServer)

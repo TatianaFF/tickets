@@ -1,10 +1,10 @@
-package com.example.tickets.screens.tickets.model
+package com.example.tickets.model
 
 import android.net.Uri
 import androidx.core.net.toUri
 import com.example.models.Offer
 import com.example.tickets.R
-import com.example.tickets.screens.tickets.adapter.DelegateAdapterItem
+import com.example.tickets.adapter.DelegateAdapterItem
 import kotlinx.coroutines.selects.whileSelect
 
 data class OfferItem(

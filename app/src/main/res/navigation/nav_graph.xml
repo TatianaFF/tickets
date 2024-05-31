@@ -69,7 +69,26 @@
             android:name="cityTo"
             app:argType="string"
             android:defaultValue=""/>
+        <action
+            android:id="@+id/action_ticketRecommendationsFragment_to_allTicketsFragment"
+            app:destination="@id/allTicketsFragment" />
 
+    </fragment>
+    <fragment
+        android:id="@+id/allTicketsFragment"
+        android:name="com.example.tickets.screens.tickets.all_tickets.AllTicketsFragment"
+        android:label="fragment_all_tickets"
+        tools:layout="@layout/fragment_all_tickets" >
+
+        <argument
+            android:name="cityFrom"
+            app:argType="string"
+            android:defaultValue=""/>
+
+        <argument
+            android:name="cityTo"
+            app:argType="string"
+            android:defaultValue=""/>
     </fragment>
 
 </navigation>

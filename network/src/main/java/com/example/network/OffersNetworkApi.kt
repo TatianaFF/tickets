@@ -2,6 +2,7 @@ package com.example.network
 
 import com.example.models.Flight
 import com.example.models.Offer
+import com.example.models.Ticket
 import com.google.gson.JsonObject
 import com.google.gson.annotations.SerializedName
 import okhttp3.ResponseBody
@@ -32,5 +33,5 @@ data class RecommendedFlightsResponse(
 )
 
 data class TicketsResponse(
-    val tickets: List<Offer>,
+    val tickets: List<Ticket>,
 )

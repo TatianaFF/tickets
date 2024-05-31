@@ -1,13 +1,14 @@
-package com.example.tickets.screens.tickets.adapter
+package com.example.tickets.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tickets.databinding.ItemOfferBinding
-import com.example.tickets.screens.tickets.model.OfferItem
+import com.example.tickets.model.OfferItem
 
-class OfferAdapterDelegate : DelegateAdapter<OfferItem, OfferAdapterDelegate.OfferViewHolder>(OfferItem::class.java) {
+class OfferAdapterDelegate : DelegateAdapter<OfferItem, OfferAdapterDelegate.OfferViewHolder>(
+    OfferItem::class.java) {
 
     override fun createViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
         val binding = ItemOfferBinding.inflate(LayoutInflater.from(parent.context), parent, false)

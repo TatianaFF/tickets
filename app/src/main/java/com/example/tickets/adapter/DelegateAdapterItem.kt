@@ -1,4 +1,4 @@
-package com.example.tickets.screens.tickets.adapter
+package com.example.tickets.adapter
 
 
 interface DelegateAdapterItem {

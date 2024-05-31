@@ -10,6 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import com.example.tickets.R
 import com.example.tickets.databinding.FragmentTicketRecommendationsBinding
 import com.example.tickets.databinding.FragmentTicketsBinding
@@ -43,10 +45,16 @@ class TicketRecommendationsFragment : Fragment() {
     ): View {
         _binding = FragmentTicketRecommendationsBinding.inflate(inflater, container, false)
 
-        initValues()
-        observeViewModel()
-
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val navController = Navigation.findNavController(requireActivity(), R.id.nav_fragment)
+
+        initValues(navController)
+        observeViewModel()
     }
 
     private fun observeViewModel() {
@@ -66,13 +74,22 @@ class TicketRecommendationsFragment : Fragment() {
         })
     }
 
-    private fun initValues() {
+    private fun initValues(navController: NavController) {
         binding.editFrom.setText(cityFrom)
         binding.editTo.setText(cityTo)
 
         binding.arrowBack.setOnClickListener { requireActivity().supportFragmentManager.popBackStack() }
 
-        binding.btnShowAllTickets.setOnClickListener {  }
+        binding.btnShowAllTickets.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("cityFrom", binding.editFrom.text.toString())
+            bundle.putString("cityTo", binding.editTo.text.toString())
+
+            navController.navigate(
+                R.id.allTicketsFragment,
+                bundle
+            )
+        }
     }
 
     override fun onDestroyView() {

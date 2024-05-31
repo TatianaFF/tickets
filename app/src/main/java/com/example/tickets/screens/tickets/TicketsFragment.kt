@@ -15,8 +15,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.tickets.MainActivity
 import com.example.tickets.databinding.FragmentTicketsBinding
-import com.example.tickets.screens.tickets.adapter.MainCompositeAdapter
-import com.example.tickets.screens.tickets.adapter.OfferAdapterDelegate
+import com.example.tickets.adapter.MainCompositeAdapter
+import com.example.tickets.adapter.OfferAdapterDelegate
 import com.example.tickets.screens.tickets.search_dialog.SearchDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 

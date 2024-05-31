@@ -1,4 +1,4 @@
-package com.example.tickets.screens.tickets.adapter
+package com.example.tickets.adapter
 
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.DiffUtil

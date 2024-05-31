@@ -19,8 +19,8 @@ import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.example.domain.GetOffersUseCase
 import com.example.models.Offer
-import com.example.tickets.screens.tickets.adapter.DelegateAdapterItem
-import com.example.tickets.screens.tickets.model.OfferItem
+import com.example.tickets.adapter.DelegateAdapterItem
+import com.example.tickets.model.OfferItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.cancelAndJoin

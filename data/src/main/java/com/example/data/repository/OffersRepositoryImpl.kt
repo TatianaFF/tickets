@@ -3,6 +3,7 @@ package com.example.data.repository
 import android.util.Log
 import com.example.models.Flight
 import com.example.models.Offer
+import com.example.models.Ticket
 import com.example.network.OffersNetworkApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -21,5 +22,9 @@ class OffersRepositoryImpl @Inject constructor(
 
     override fun getRecommendedFlights(): Flow<List<Flight>> = flow {
         emit(network.getRecommendedFlights().ticketsOffers)
+    }
+
+    override fun getTickets(): Flow<List<Ticket>> = flow {
+        emit(network.getTickets().tickets)
     }
 }

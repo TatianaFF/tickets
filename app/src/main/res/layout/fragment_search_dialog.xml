@@ -18,7 +18,7 @@
             android:id="@+id/constraintLayoutTapper"
             android:layout_width="38dp"
             android:layout_height="5dp"
-            android:layout_marginTop="9dp"
+            android:layout_margin="16dp"
             android:background="@drawable/bg_ios_tap_element"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,9 +26,10 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_search_container"
-            android:layout_width="329dp"
-            android:layout_height="96dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:backgroundTint="@color/gray_dark"
+            android:layout_margin="16dp"
             app:cardCornerRadius="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,6 +41,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:layout_gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
@@ -53,7 +55,10 @@
 
                     <EditText
                         android:id="@+id/edit_from"
-                        android:layout_width="wrap_content"
+                        android:layout_gravity="center"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/sf_pro_display_semibold"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:digits="абвгдеёжзийклмнопрстуфхцчшщъыьэюя АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
@@ -66,7 +71,8 @@
                 </LinearLayout>
 
                 <View
-                    android:layout_width="296dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="16dp"
                     android:layout_height="1dp"
                     android:layout_gravity="center"
                     android:background="@color/gray_medium" />
@@ -85,6 +91,7 @@
 
                     <LinearLayout
                         android:weightSum="6"
+                        android:layout_gravity="center"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -93,6 +100,8 @@
                             android:layout_weight="5"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/sf_pro_display_semibold"
                             android:background="@null"
                             android:digits="абвгдеёжзийклмнопрстуфхцчшщъыьэюя АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
                             android:hint="@string/to"
@@ -122,6 +131,7 @@
             android:id="@+id/hints_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="16dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -137,10 +147,14 @@
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_gravity="center"
-                    android:layout_margin="16dp"
+                    android:layout_margin="8dp"
                     android:src="@drawable/hard_way" />
 
                 <TextView
+                    android:gravity="center"
+                    android:maxWidth="100dp"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/sf_pro_display_regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/hard_way"
@@ -150,7 +164,7 @@
 
             <LinearLayout
                 android:id="@+id/anywhere"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
@@ -158,11 +172,12 @@
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_gravity="center"
-                    android:layout_margin="16dp"
+                    android:layout_margin="8dp"
                     android:src="@drawable/anywhere" />
 
                 <TextView
                     android:id="@+id/tv_anywhere"
+                    android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/anywhere"
@@ -172,7 +187,7 @@
 
             <LinearLayout
                 android:id="@+id/weekend"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
@@ -180,10 +195,11 @@
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_gravity="center"
-                    android:layout_margin="16dp"
+                    android:layout_margin="8dp"
                     android:src="@drawable/weekend" />
 
                 <TextView
+                    android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/weekend"
@@ -201,10 +217,13 @@
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_gravity="center"
-                    android:layout_margin="16dp"
+                    android:layout_margin="8dp"
                     android:src="@drawable/hot_tickets" />
 
                 <TextView
+                    android:gravity="center"
+                    android:maxWidth="100dp"
+                    android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/hot_tickets"
@@ -219,7 +238,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/hints_container">
@@ -228,6 +247,8 @@
                 android:id="@+id/card_rec_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginVertical="24dp"
+                android:layout_marginHorizontal="16dp"
                 android:backgroundTint="@color/gray_dark"
                 app:cardCornerRadius="16dp">
 
@@ -235,6 +256,7 @@
                     android:id="@+id/istanbul_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginVertical="8dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -251,7 +273,8 @@
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:layout_gravity="center"
-                                android:layout_margin="16dp"
+                                android:layout_marginHorizontal="16dp"
+                                android:layout_marginVertical="8dp"
                                 android:src="@drawable/istanbul" />
 
                             <LinearLayout
@@ -262,6 +285,8 @@
 
                                 <TextView
                                     android:id="@+id/tv_istanbul"
+                                    android:textSize="16sp"
+                                    android:fontFamily="@font/sf_pro_display_semibold"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/istanbul"
@@ -278,8 +303,9 @@
                         </LinearLayout>
 
                         <View
-                            android:layout_width="296dp"
+                            android:layout_width="match_parent"
                             android:layout_height="1dp"
+                            android:layout_marginHorizontal="16dp"
                             android:layout_gravity="center"
                             android:background="@color/divider" />
 
@@ -300,7 +326,8 @@
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:layout_gravity="center"
-                                android:layout_margin="16dp"
+                                android:layout_marginHorizontal="16dp"
+                                android:layout_marginVertical="8dp"
                                 android:src="@drawable/sochi" />
 
                             <LinearLayout
@@ -311,6 +338,8 @@
 
                                 <TextView
                                     android:id="@+id/tv_sochi"
+                                    android:textSize="16sp"
+                                    android:fontFamily="@font/sf_pro_display_semibold"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/sochi"
@@ -327,9 +356,10 @@
                         </LinearLayout>
 
                         <View
-                            android:layout_width="296dp"
+                            android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_gravity="center"
+                            android:layout_marginHorizontal="16dp"
                             android:background="@color/divider" />
 
                     </LinearLayout>
@@ -349,7 +379,8 @@
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:layout_gravity="center"
-                                android:layout_margin="16dp"
+                                android:layout_marginHorizontal="16dp"
+                                android:layout_marginVertical="8dp"
                                 android:src="@drawable/phuket" />
 
                             <LinearLayout
@@ -360,6 +391,8 @@
 
                                 <TextView
                                     android:id="@+id/tv_phuket"
+                                    android:textSize="16sp"
+                                    android:fontFamily="@font/sf_pro_display_semibold"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/phuket"
@@ -377,7 +410,8 @@
                         </LinearLayout>
 
                         <View
-                            android:layout_width="296dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginHorizontal="16dp"
                             android:layout_height="1dp"
                             android:layout_gravity="center"
                             android:background="@color/divider" />
@@ -386,6 +420,24 @@
                 </LinearLayout>
 
 
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/search"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="16dp"
+                android:backgroundTint="@color/blue_text"
+                app:cardCornerRadius="8dp">
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/sf_pro_display_semibold"
+                    android:text="Найти"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
             </androidx.cardview.widget.CardView>
 
 

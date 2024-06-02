@@ -8,11 +8,12 @@
     tools:context=".screens.tickets.all_tickets.AllTicketsFragment">
 
     <LinearLayout
+        android:id="@+id/way_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="8dp"
         android:background="@color/background_dialog"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,45 +22,67 @@
 
         <ImageView
             android:id="@+id/arrow_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_gravity="center"
             android:src="@drawable/arrow_back_blue" />
 
         <LinearLayout
-            android:orientation="vertical"
+            android:padding="8dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/tv_from"
-                    android:text = "Москва"
-                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_display_semibold"
+                    android:textSize="16sp"
+                    android:text="Москва"
+                    android:textColor="@color/white" />
 
                 <TextView
-                    android:text = "-"
-                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:fontFamily="@font/sf_pro_display_semibold"
+                    android:textSize="16sp"
+                    android:textColor="@color/white" />
 
                 <TextView
                     android:id="@+id/tv_to"
-                    android:text = "Сочи"
-                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_pro_display_semibold"
+                    android:textSize="16sp"
+                    android:text="Сочи"
+                    android:textColor="@color/white" />
 
             </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_tickets"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/way_container"
+        tools:listitem="@layout/item_ticket" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

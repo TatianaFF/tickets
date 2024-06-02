@@ -2,25 +2,18 @@ package com.example.tickets.screens.tickets.search_dialog
 
 import android.app.Dialog
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.FrameLayout
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.tickets.R
 import com.example.tickets.databinding.FragmentSearchDialogBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.Timer
-import java.util.TimerTask
-
-
 
 
 @AndroidEntryPoint
@@ -59,7 +52,7 @@ class SearchDialogFragment : BottomSheetDialogFragment() {
 
     private fun setupFullHeight(bottomSheet: View) {
         val layoutParams = bottomSheet.layoutParams
-        layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT
+//        layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT
         bottomSheet.layoutParams = layoutParams
     }
 
@@ -106,31 +99,17 @@ class SearchDialogFragment : BottomSheetDialogFragment() {
             binding.editTo.setText("")
         }
 
-        setTextWatcherEditTo(navController)
-    }
+        binding.search.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("cityFrom", binding.editFrom.text.toString())
+            bundle.putString("cityTo", binding.editTo.text.toString())
 
-    private fun setTextWatcherEditTo(navController: NavController) {
-        binding.editTo.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-                val bundle = Bundle()
-                bundle.putString("cityFrom", binding.editFrom.text.toString())
-                bundle.putString("cityTo", binding.editTo.text.toString())
-
-                navController.navigate(
-                    R.id.ticketRecommendationsFragment,
-                    bundle
-                )
-                dismiss()
-            }
-        })
+            navController.navigate(
+                R.id.ticketRecommendationsFragment,
+                bundle
+            )
+            dismiss()
+        }
     }
 
     override fun onDestroyView() {

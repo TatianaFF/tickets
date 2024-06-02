@@ -80,7 +80,7 @@ class TicketRecommendationsFragment : Fragment() {
 
         binding.arrowBack.setOnClickListener { requireActivity().supportFragmentManager.popBackStack() }
 
-        binding.btnShowAllTickets.setOnClickListener {
+        binding.showAllTickets.setOnClickListener {
             val bundle = Bundle()
             bundle.putString("cityFrom", binding.editFrom.text.toString())
             bundle.putString("cityTo", binding.editTo.text.toString())

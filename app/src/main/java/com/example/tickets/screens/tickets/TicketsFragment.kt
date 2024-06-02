@@ -2,6 +2,7 @@ package com.example.tickets.screens.tickets
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -9,11 +10,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
 import com.example.tickets.MainActivity
+import com.example.tickets.R
 import com.example.tickets.databinding.FragmentTicketsBinding
 import com.example.tickets.adapter.MainCompositeAdapter
 import com.example.tickets.adapter.OfferAdapterDelegate
@@ -45,10 +51,6 @@ class TicketsFragment : Fragment() {
     ): View {
         _binding = FragmentTicketsBinding.inflate(inflater, container, false)
 
-        setupAdapter()
-        observeViewModel()
-        initValues()
-
         return binding.root
     }
 
@@ -58,11 +60,30 @@ class TicketsFragment : Fragment() {
         setTextWatcherEditFrom()
         setFocusListenerEditTo()
 
+        setupAdapter()
+        observeViewModel()
+        initValues()
     }
 
     private fun initValues() {
+
+        val navHost = requireActivity().supportFragmentManager.findFragmentById(R.id.nav_fragment) as NavHostFragment
+
+        val navController = navHost.navController
+
         settings = requireContext().getSharedPreferences("settings", Context.MODE_PRIVATE)
         binding.editFrom.setText(settings.getString(CITY_FROM, ""))
+
+        binding.searchTickets.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("cityFrom", binding.editFrom.text.toString())
+            bundle.putString("cityTo", binding.editTo.text.toString())
+
+            navController.navigate(
+                R.id.ticketRecommendationsFragment,
+                bundle
+            )
+        }
     }
 
     private fun setTextWatcherEditFrom() {

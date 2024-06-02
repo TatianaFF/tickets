@@ -10,6 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.tickets.databinding.FragmentAllTicketsBinding
 import androidx.lifecycle.Observer
+import com.example.tickets.adapter.MainCompositeAdapter
+import com.example.tickets.adapter.OfferAdapterDelegate
+import com.example.tickets.adapter.TicketAdapterDelegate
 import com.example.tickets.screens.tickets.TicketsFragment
 import com.example.tickets.screens.tickets.ticket_recommendations.TicketRecommendationsFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,6 +27,12 @@ class AllTicketsFragment : Fragment() {
 
     private var cityFrom: String? = null
     private var cityTo: String? = null
+
+    private val compositeAdapter by lazy {
+        MainCompositeAdapter.Builder()
+            .add(TicketAdapterDelegate())
+            .build()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +57,11 @@ class AllTicketsFragment : Fragment() {
 
         initValues()
         observeViewModel()
+        setupAdapter()
+    }
+
+    private fun setupAdapter() {
+        binding.recyclerTickets.adapter = compositeAdapter
     }
 
     private fun initValues() {
@@ -60,7 +74,7 @@ class AllTicketsFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.tickets.observe(viewLifecycleOwner, Observer {
             it ?: return@Observer
-            Log.e("tickets", it.toString())
+            compositeAdapter.submitList(it)
         })
     }
 

@@ -2,6 +2,7 @@ package com.example.tickets.screens.tickets
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.graphics.Point
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
@@ -10,19 +11,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
-import android.view.WindowManager
-import android.widget.Toast
+import android.view.ViewParent
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
-import com.example.tickets.MainActivity
 import com.example.tickets.R
-import com.example.tickets.databinding.FragmentTicketsBinding
 import com.example.tickets.adapter.MainCompositeAdapter
 import com.example.tickets.adapter.OfferAdapterDelegate
+import com.example.tickets.databinding.FragmentTicketsBinding
 import com.example.tickets.screens.tickets.search_dialog.SearchDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -84,6 +82,30 @@ class TicketsFragment : Fragment() {
                 bundle
             )
         }
+
+        binding.includeHints.istanbulContainer.setOnClickListener { binding.editTo.setText(binding.includeHints.tvIstanbul.text) }
+        binding.includeHints.sochiContainer.setOnClickListener { binding.editTo.setText(binding.includeHints.tvSochi.text) }
+        binding.includeHints.phuketContainer.setOnClickListener { binding.editTo.setText(binding.includeHints.tvPhuket.text) }
+
+        binding.includeHints.hardWay.setOnClickListener {
+            navController.navigate(R.id.action_tickets_fragment_to_hardWayFragment)
+        }
+
+        binding.includeHints.weekend.setOnClickListener {
+            navController.navigate(R.id.action_tickets_fragment_to_weekendFragment)
+        }
+
+        binding.includeHints.hotTickets.setOnClickListener {
+            navController.navigate(R.id.action_tickets_fragment_to_hotTicketsFragment)
+        }
+
+        binding.includeHints.anywhere.setOnClickListener {
+            binding.editTo.setText(binding.includeHints.tvAnywhere.text)
+        }
+
+//        binding.includeHints.clearCityTo.setOnClickListener {
+//            binding.editTo.setText("")
+//        }
     }
 
     private fun setTextWatcherEditFrom() {
@@ -103,11 +125,19 @@ class TicketsFragment : Fragment() {
         })
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun setFocusListenerEditTo() {
         binding.editTo.onFocusChangeListener = OnFocusChangeListener { view, hasFocus ->
             if (hasFocus) {
-                dialog = SearchDialogFragment.newInstance(binding.editFrom.text.toString())
-                dialog.show(this.parentFragmentManager, "tag")
+//                dialog = SearchDialogFragment.newInstance(binding.editFrom.text.toString())
+//                dialog.show(this.parentFragmentManager, "tag")
+
+                binding.includeHints.root.visibility = View.VISIBLE
+
+                binding.scrollview.post(Runnable { binding.scrollview.smoothScrollTo(0, binding.titleContainer.height) })
+
+            } else {
+                binding.includeHints.root.visibility = View.GONE
             }
         }
     }

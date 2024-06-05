@@ -20,7 +20,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
+import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.PagerSnapHelper
 import com.example.tickets.R
+import com.example.tickets.adapter.DelegateAdapter
+import com.example.tickets.adapter.DelegateAdapterItem
+import com.example.tickets.adapter.ItemSnapHelper
 import com.example.tickets.adapter.MainCompositeAdapter
 import com.example.tickets.adapter.OfferAdapterDelegate
 import com.example.tickets.databinding.FragmentTicketsBinding
@@ -173,12 +178,14 @@ class TicketsFragment : Fragment() {
 
     private fun setupAdapter() {
         binding.recyclerOffers.adapter = compositeAdapter
+        ItemSnapHelper().attachToRecyclerView(binding.recyclerOffers)
     }
 
     private fun observeViewModel() {
         viewModel.offers.observe(viewLifecycleOwner, Observer {
             it ?: return@Observer
-            compositeAdapter.submitList(it)
+            val list: List<DelegateAdapterItem> = it + it
+            compositeAdapter.submitList(list)
         })
     }
 

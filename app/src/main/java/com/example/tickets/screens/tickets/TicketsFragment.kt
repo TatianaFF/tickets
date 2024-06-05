@@ -1,8 +1,9 @@
 package com.example.tickets.screens.tickets
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.content.Context
 import android.content.SharedPreferences
-import android.graphics.Point
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
@@ -11,8 +12,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
-import android.view.ViewParent
 import androidx.annotation.RequiresApi
+import androidx.core.graphics.alpha
+import androidx.core.view.ViewCompat
+import androidx.core.view.ViewCompat.animate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -65,7 +68,8 @@ class TicketsFragment : Fragment() {
 
     private fun initValues() {
 
-        val navHost = requireActivity().supportFragmentManager.findFragmentById(R.id.nav_fragment) as NavHostFragment
+        val navHost =
+            requireActivity().supportFragmentManager.findFragmentById(R.id.nav_fragment) as NavHostFragment
 
         val navController = navHost.navController
 
@@ -127,17 +131,42 @@ class TicketsFragment : Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setFocusListenerEditTo() {
-        binding.editTo.onFocusChangeListener = OnFocusChangeListener { view, hasFocus ->
+        binding.editTo.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
-//                dialog = SearchDialogFragment.newInstance(binding.editFrom.text.toString())
-//                dialog.show(this.parentFragmentManager, "tag")
 
-                binding.includeHints.root.visibility = View.VISIBLE
+                binding.includeHints.root.apply {
+                    alpha = 0f
 
-                binding.scrollview.post(Runnable { binding.scrollview.smoothScrollTo(0, binding.titleContainer.height) })
+                    visibility = View.VISIBLE
+
+                    animate()
+                        .alpha(1f)
+                        .setDuration(300)
+                        .setListener(object : AnimatorListenerAdapter() {
+                            override fun onAnimationEnd(animation: Animator) {
+                                super.onAnimationEnd(animation)
+                                binding.scrollview.post(Runnable {
+                                    binding.scrollview.smoothScrollTo(
+                                        0,
+                                        binding.titleContainer.height
+                                    )
+                                })
+                            }
+                        })
+                }
 
             } else {
-                binding.includeHints.root.visibility = View.GONE
+                binding.includeHints.root.apply {
+                    animate()
+                        .alpha(0f)
+                        .setDuration(300)
+                        .setListener(object : AnimatorListenerAdapter() {
+                            override fun onAnimationEnd(animation: Animator) {
+                                super.onAnimationEnd(animation)
+                                visibility = View.GONE
+                            }
+                        })
+                }
             }
         }
     }

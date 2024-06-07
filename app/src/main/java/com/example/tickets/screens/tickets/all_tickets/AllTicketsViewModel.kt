@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.GetTicketsUseCase
 import com.example.tickets.adapter.DelegateAdapterItem
-import com.example.tickets.model.TicketItem
+import com.example.tickets.model.TicketItem.Companion.toTicketItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
@@ -34,7 +34,7 @@ class AllTicketsViewModel @Inject constructor(
                 .onStart { Log.e("start", "") }
                 .onEach { ticketsServer ->
                     _tickets.postValue(ticketsServer.map { ticketServer ->
-                        TicketItem.ticketToTicketItem(ticketServer)
+                        ticketServer.toTicketItem()
                     })
                 }
                 .catch { Log.e("catch", it.toString()) }

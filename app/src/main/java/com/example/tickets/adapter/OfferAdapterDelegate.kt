@@ -2,10 +2,11 @@ package com.example.tickets.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tickets.databinding.ItemOfferBinding
 import com.example.tickets.model.OfferItem
+import java.text.NumberFormat
+import java.util.Locale
 
 class OfferAdapterDelegate : DelegateAdapter<OfferItem, OfferAdapterDelegate.OfferViewHolder>(
     OfferItem::class.java) {
@@ -29,7 +30,7 @@ class OfferAdapterDelegate : DelegateAdapter<OfferItem, OfferAdapterDelegate.Off
                 imgOffer.setImageResource(item.image)
                 tvTitleOffer.text = item.title
                 tvTown.text = item.town
-                tvPrice.text = item.price
+                tvPrice.text = NumberFormat.getInstance(Locale("ru")).format(item.price)
             }
         }
     }

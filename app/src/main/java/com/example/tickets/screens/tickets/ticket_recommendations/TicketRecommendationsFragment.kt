@@ -1,22 +1,16 @@
 package com.example.tickets.screens.tickets.ticket_recommendations
 
-import android.content.Context
-import androidx.fragment.app.viewModels
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.tickets.R
 import com.example.tickets.databinding.FragmentTicketRecommendationsBinding
-import com.example.tickets.databinding.FragmentTicketsBinding
-import com.example.tickets.screens.tickets.TicketsFragment
-import com.example.tickets.screens.tickets.search_dialog.SearchDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -62,15 +56,15 @@ class TicketRecommendationsFragment : Fragment() {
             it ?: return@Observer
             binding.tvFlight1.text = it[0].title
             binding.tvPriceFlight1.text = it[0].price.value.toString()
-            binding.tvTimesFlight1.text = it[0].timeRange.map { time -> "$time " }.toString()
+            binding.tvTimesFlight1.text = it[0].timeRange.take(3).joinToString()
 
             binding.tvFlight2.text = it[1].title
             binding.tvPriceFlight2.text = it[1].price.value.toString()
-            binding.tvTimesFlight2.text = it[1].timeRange.map { time -> "$time " }.toString()
+            binding.tvTimesFlight2.text = it[1].timeRange.take(3).joinToString()
 
             binding.tvFlight3.text = it[2].title
             binding.tvPriceFlight3.text = it[2].price.value.toString()
-            binding.tvTimesFlight3.text = it[2].timeRange.map { time -> "$time " }.toString()
+            binding.tvTimesFlight3.text = it[2].timeRange.take(3).joinToString()
         })
     }
 
@@ -89,6 +83,10 @@ class TicketRecommendationsFragment : Fragment() {
                 R.id.allTicketsFragment,
                 bundle
             )
+        }
+
+        binding.swap.setOnClickListener {
+            binding.editFrom.text = binding.editTo.text.also { binding.editTo.text = binding.editFrom.text }
         }
     }
 

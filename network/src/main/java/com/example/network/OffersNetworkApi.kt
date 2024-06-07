@@ -2,15 +2,9 @@ package com.example.network
 
 import com.example.models.Flight
 import com.example.models.Offer
-import com.example.models.Ticket
-import com.google.gson.JsonObject
+import com.example.network.models.TicketNetwork
 import com.google.gson.annotations.SerializedName
-import okhttp3.ResponseBody
-import org.json.JSONObject
-import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.Response
-import javax.inject.Singleton
 
 interface OffersNetworkApi {
     @GET("214a1713-bac0-4853-907c-a1dfc3cd05fd")
@@ -33,5 +27,5 @@ data class RecommendedFlightsResponse(
 )
 
 data class TicketsResponse(
-    val tickets: List<Ticket>,
+    val tickets: List<TicketNetwork>,
 )

@@ -38,7 +38,7 @@ dependencies {
     implementation(project(":models"))
 
     implementation(libs.hilt.android)
-    kapt(libs.hiltCompiler)
+    kapt(libs.hilt.compiler)
     implementation(libs.dagger)
     kapt(libs.daggerCompiller)
 

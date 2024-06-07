@@ -1,16 +1,12 @@
 package com.example.tickets.model
 
-import androidx.compose.foundation.isSystemInDarkTheme
-import com.example.models.Offer
-import com.example.models.Price
 import com.example.models.Ticket
-import com.example.tickets.R
 import com.example.tickets.adapter.DelegateAdapterItem
 
 data class TicketItem(
     val id: Long,
     val badge: String? = null,
-    val price: Price,
+    val price: Long,
     val departureDate: String,
     val departureAirport: String,
     val arrivalDate: String,
@@ -27,16 +23,16 @@ data class TicketItem(
     }
 
     companion object {
-        fun ticketToTicketItem(ticket: Ticket): TicketItem {
+        fun Ticket.toTicketItem(): TicketItem {
             return TicketItem(
-                id = ticket.id,
-                badge = ticket.badge,
-                price = ticket.price,
-                departureDate = ticket.departure.date,
-                departureAirport = ticket.departure.airport,
-                arrivalDate = ticket.arrival.date,
-                arrivalAirport = ticket.arrival.airport,
-                hasTransfer = ticket.hasTransfer
+                id = id,
+                badge = badge,
+                price = price,
+                departureDate = departureDate,
+                departureAirport = departureAirport,
+                arrivalDate = arrivalDate,
+                arrivalAirport = arrivalAirport,
+                hasTransfer = hasTransfer
             )
         }
     }

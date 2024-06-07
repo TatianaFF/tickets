@@ -42,7 +42,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.14"
     }
     packaging {
         resources {
@@ -59,7 +59,7 @@ dependencies {
     implementation(project(":models"))
 
     implementation(libs.hilt.android)
-    kapt(libs.hiltCompiler)
+    kapt(libs.hilt.compiler)
     implementation(libs.dagger)
     kapt(libs.daggerCompiller)
     implementation(libs.dataStore)

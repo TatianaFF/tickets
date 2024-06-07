@@ -31,6 +31,8 @@
         app:itemTextColor="@color/tint_btm_selector"
         android:layout_width="match_parent"
         android:layout_height="54dp"
+        app:itemIconSize="20dp"
+        android:paddingHorizontal="16dp"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/btm_menu" />
 

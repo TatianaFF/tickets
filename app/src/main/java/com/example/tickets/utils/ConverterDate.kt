@@ -9,7 +9,7 @@ object ConverterDate {
     @RequiresApi(Build.VERSION_CODES.O)
     fun stringToLocalDateTime(str: String): LocalDateTime {
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
-        val dt = LocalDateTime.parse(str, formatter);
+        val dt = LocalDateTime.parse(str, formatter)
         return dt
     }
 }

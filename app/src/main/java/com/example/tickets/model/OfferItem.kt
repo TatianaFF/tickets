@@ -1,16 +1,13 @@
 package com.example.tickets.model
 
-import android.net.Uri
-import androidx.core.net.toUri
 import com.example.models.Offer
 import com.example.tickets.R
 import com.example.tickets.adapter.DelegateAdapterItem
-import kotlinx.coroutines.selects.whileSelect
 
 data class OfferItem(
     val title: String,
     val town: String,
-    val price: String,
+    val price: Long,
     val image: Int
 ): DelegateAdapterItem {
     override fun id(): Any {
@@ -26,7 +23,7 @@ data class OfferItem(
             return OfferItem(
                 title = offer.title,
                 town = offer.town,
-                price = offer.price.value.toString(),
+                price = offer.price.value,
                 image = when(offer.id) {
                     1 -> R.drawable.one
                     2 -> R.drawable.two

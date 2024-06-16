@@ -21,37 +21,36 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="10">
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="96dp">
 
             <ImageView
                 android:id="@+id/arrow_back"
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="18dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_margin="8dp"
                 android:layout_gravity="center"
                 android:src="@drawable/arrow_back" />
 
             <LinearLayout
-                android:paddingVertical="8dp"
-                android:layout_width="0dp"
-                android:layout_weight="6"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="8dp"
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:weightSum="7"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
 
                     <EditText
                         android:id="@+id/edit_from"
-                        android:layout_width="match_parent"
+                        android:layout_weight="6"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/sf_pro_display_semibold"
-                        android:textSize="16sp"
                         android:background="@null"
                         android:digits="абвгдеёжзийклмнопрстуфхцчшщъыьэюя АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
                         android:hint="@string/from"
@@ -60,11 +59,20 @@
                         android:textColor="@color/white"
                         android:textColorHint="@color/tint_btm" />
 
+                    <ImageView
+                        android:id="@+id/swap"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/icon_filter" />
+
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
+                    android:layout_marginEnd="8dp"
                     android:layout_gravity="center"
                     android:background="@color/gray_medium" />
 
@@ -74,16 +82,15 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
+                        android:weightSum="7"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:weightSum="10">
+                        android:layout_height="wrap_content">
 
                         <EditText
                             android:id="@+id/edit_to"
-                            android:layout_width="match_parent"
+                            android:layout_weight="6"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/sf_pro_display_semibold"
-                            android:textSize="16sp"
                             android:background="@null"
                             android:digits="абвгдеёжзийклмнопрстуфхцчшщъыьэюя АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
                             android:hint="@string/to"
@@ -91,36 +98,202 @@
                             android:paddingBottom="8dp"
                             android:textColor="@color/white"
                             android:textColorHint="@color/tint_btm" />
+
+                        <ImageView
+                            android:id="@+id/clear_city_to"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/clear_edit" />
                     </LinearLayout>
 
                 </LinearLayout>
 
-            </LinearLayout>
-            <ImageView
-                android:id="@+id/swap"
-                android:layout_width="0dp"
-                android:layout_height="24dp"
-                android:layout_weight="2"
-                android:layout_gravity="center"
-                android:src="@drawable/icon_filter" />
 
+            </LinearLayout>
 
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
+
+    <HorizontalScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_search_container">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_date_from"
+                android:backgroundTint="@color/gray_dark"
+                app:cardCornerRadius="50dp"
+                android:layout_marginEnd="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:paddingVertical="8dp"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/img_plus"
+                        android:layout_marginStart="4dp"
+                        android:src="@drawable/plus"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"/>
+
+                    <TextView
+                        android:id="@+id/tv_date_from"
+                        android:paddingHorizontal="8dp"
+                        android:textColor="@color/white"
+                        android:text="обратно "
+                        android:fontFamily="@font/sf_pro_display_medium"
+                        android:textStyle="italic"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_date_to"
+                android:backgroundTint="@color/gray_dark"
+                app:cardCornerRadius="50dp"
+                android:layout_marginEnd="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:paddingVertical="8dp"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_day_month"
+                        android:paddingStart="8dp"
+                        android:textColor="@color/white"
+                        android:text="24 фев"
+                        android:fontFamily="@font/sf_pro_display_medium"
+                        android:textStyle="italic"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:textColor="@color/tint_btm"
+                        android:text=", "
+                        android:fontFamily="@font/sf_pro_display_medium"
+                        android:textStyle="italic"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/tv_day_week"
+                        android:paddingEnd="8dp"
+                        android:textColor="@color/tint_btm"
+                        android:text="бб"
+                        android:fontFamily="@font/sf_pro_display_medium"
+                        android:textStyle="italic"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_person"
+                android:backgroundTint="@color/gray_dark"
+                app:cardCornerRadius="50dp"
+                android:layout_marginEnd="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:paddingVertical="8dp"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_marginHorizontal="8dp"
+                        android:src="@drawable/profile"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"/>
+
+                    <TextView
+                        android:id="@+id/tv_person"
+                        android:paddingEnd="8dp"
+                        android:textColor="@color/white"
+                        android:text="1,эконом"
+                        android:fontFamily="@font/sf_pro_display_medium"
+                        android:textStyle="italic"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_filter"
+                android:backgroundTint="@color/gray_dark"
+                app:cardCornerRadius="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:paddingVertical="8dp"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_marginStart="8dp"
+                        android:src="@drawable/filter"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"/>
+
+                    <TextView
+                        android:paddingHorizontal="8dp"
+                        android:textColor="@color/white"
+                        android:text="фильтры"
+                        android:fontFamily="@font/sf_pro_display_medium"
+                        android:textStyle="italic"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+
+    </HorizontalScrollView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_flights_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="@color/direct_flights_background"
         app:cardCornerRadius="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card_search_container">
+        app:layout_constraintTop_toBottomOf="@+id/scroll_view">
 
         <LinearLayout
             android:padding="16dp"
@@ -175,6 +348,7 @@
                                 android:fontFamily="@font/sf_pro_display_medium"
                                 android:textSize="14sp"
                                 android:layout_weight="7"
+                                android:textStyle="italic"
                                 android:text="Уральские авиалинии"
                                 android:textColor="@color/white" />
 
@@ -192,6 +366,7 @@
                                     android:fontFamily="@font/sf_pro_display_medium"
                                     android:textSize="14sp"
                                     android:text="100 000"
+                                    android:textStyle="italic"
                                     android:textColor="@color/blue_text" />
 
                                 <TextView
@@ -199,7 +374,8 @@
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/sf_pro_display_medium"
                                     android:textSize="14sp"
-                                    android:text=" ₽"
+                                    android:textStyle="italic"
+                                    android:text=" ₽ "
                                     android:textColor="@color/blue_text" />
 
                                 <ImageView
@@ -275,6 +451,7 @@
                                 android:layout_weight="7"
                                 android:fontFamily="@font/sf_pro_display_medium"
                                 android:textSize="14sp"
+                                android:textStyle="italic"
                                 android:text="Уральские авиалинии"
                                 android:textColor="@color/white" />
 
@@ -292,14 +469,16 @@
                                     android:text="100 000"
                                     android:fontFamily="@font/sf_pro_display_medium"
                                     android:textSize="14sp"
+                                    android:textStyle="italic"
                                     android:textColor="@color/blue_text" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
+                                    android:textStyle="italic"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/sf_pro_display_medium"
                                     android:textSize="14sp"
-                                    android:text=" ₽"
+                                    android:text=" ₽ "
                                     android:textColor="@color/blue_text" />
 
                                 <ImageView
@@ -376,6 +555,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="7"
                                 android:text="Уральские авиалинии"
+                                android:textStyle="italic"
                                 android:textColor="@color/white" />
 
                             <LinearLayout
@@ -392,14 +572,16 @@
                                     android:text="100 000"
                                     android:fontFamily="@font/sf_pro_display_medium"
                                     android:textSize="14sp"
+                                    android:textStyle="italic"
                                     android:textColor="@color/blue_text" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:textStyle="italic"
                                     android:fontFamily="@font/sf_pro_display_medium"
                                     android:textSize="14sp"
-                                    android:text=" ₽"
+                                    android:text=" ₽ "
                                     android:textColor="@color/blue_text" />
 
                                 <ImageView
@@ -436,6 +618,13 @@
                     </LinearLayout>
 
                 </LinearLayout>
+
+                <View
+                    android:layout_marginVertical="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:background="@color/gray_medium" />
             </LinearLayout>
 
         </LinearLayout>
@@ -462,6 +651,7 @@
             android:text="Посмотреть все билеты"
             android:textColor="@color/white"
             android:textSize="16sp"
+            android:textStyle="italic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </androidx.cardview.widget.CardView>

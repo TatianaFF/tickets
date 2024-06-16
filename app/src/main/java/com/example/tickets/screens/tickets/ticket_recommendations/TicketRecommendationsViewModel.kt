@@ -27,6 +27,14 @@ class TicketRecommendationsViewModel  @Inject constructor(
         fetchFlights()
     }
 
+    private val _dateTo = MutableLiveData<String>()
+    val dateTo: LiveData<String>
+        get() = _dateTo
+
+    fun setDateTo(date: String) {
+        _dateTo.postValue(date)
+    }
+
     private fun fetchFlights() {
         viewModelScope.launch {
             getFlightsUseCase.execute()

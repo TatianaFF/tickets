@@ -128,318 +128,319 @@
         </androidx.cardview.widget.CardView>
 
         <LinearLayout
-            android:id="@+id/hints_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="16dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:orientation="vertical"
             app:layout_constraintTop_toBottomOf="@+id/card_search_container">
 
-            <LinearLayout
-                android:id="@+id/hard_way"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="8dp"
-                    android:src="@drawable/hard_way" />
-
-                <TextView
-                    android:gravity="center"
-                    android:maxWidth="100dp"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/sf_pro_display_regular"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/hard_way"
-                    android:textColor="@color/white" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/anywhere"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="8dp"
-                    android:src="@drawable/anywhere" />
-
-                <TextView
-                    android:id="@+id/tv_anywhere"
-                    android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/anywhere"
-                    android:textColor="@color/white" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/weekend"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="8dp"
-                    android:src="@drawable/weekend" />
-
-                <TextView
-                    android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/weekend"
-                    android:textColor="@color/white" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/hot_tickets"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="8dp"
-                    android:src="@drawable/hot_tickets" />
-
-                <TextView
-                    android:gravity="center"
-                    android:maxWidth="100dp"
-                    android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/hot_tickets"
-                    android:textColor="@color/white" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/recommendations_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/hints_container">
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_rec_container"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/hints_container"
+                android:paddingBottom="32dp"
+                android:paddingTop="24dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="24dp"
-                android:layout_marginHorizontal="16dp"
-                android:backgroundTint="@color/gray_dark"
-                app:cardCornerRadius="16dp">
+                android:layout_height="wrap_content">
 
                 <LinearLayout
-                    android:id="@+id/istanbul_container"
-                    android:layout_width="match_parent"
+                    android:id="@+id/hard_way"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="8dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/anywhere">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/hard_way" />
+
+                    <TextView
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:fontFamily="@font/sf_pro_display_regular"
+                        android:gravity="center_horizontal"
+                        android:paddingTop="4dp"
+                        android:minLines="2"
+                        android:text="@string/hard_way"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                android:layout_marginHorizontal="16dp"
-                                android:layout_marginVertical="8dp"
-                                android:src="@drawable/istanbul" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:id="@+id/tv_istanbul"
-                                    android:textSize="16sp"
-                                    android:fontFamily="@font/sf_pro_display_semibold"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/istanbul"
-                                    android:textColor="@color/white" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/placeholder_recommendations"
-                                    android:textColor="@color/divider" />
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginHorizontal="16dp"
-                            android:layout_gravity="center"
-                            android:background="@color/divider" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/sochi_container"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                android:layout_marginHorizontal="16dp"
-                                android:layout_marginVertical="8dp"
-                                android:src="@drawable/sochi" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:id="@+id/tv_sochi"
-                                    android:textSize="16sp"
-                                    android:fontFamily="@font/sf_pro_display_semibold"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/sochi"
-                                    android:textColor="@color/white" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/placeholder_recommendations"
-                                    android:textColor="@color/divider" />
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_gravity="center"
-                            android:layout_marginHorizontal="16dp"
-                            android:background="@color/divider" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/phuket_container"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center"
-                                android:layout_marginHorizontal="16dp"
-                                android:layout_marginVertical="8dp"
-                                android:src="@drawable/phuket" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:id="@+id/tv_phuket"
-                                    android:textSize="16sp"
-                                    android:fontFamily="@font/sf_pro_display_semibold"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/phuket"
-                                    android:textColor="@color/white" />
-
-                                <TextView
-                                    android:id="@+id/tv_placeholder_rec"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/placeholder_recommendations"
-                                    android:textColor="@color/divider" />
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_marginHorizontal="16dp"
-                            android:layout_height="1dp"
-                            android:layout_gravity="center"
-                            android:background="@color/divider" />
-
-                    </LinearLayout>
                 </LinearLayout>
 
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/search"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginHorizontal="16dp"
-                android:backgroundTint="@color/blue_text"
-                app:cardCornerRadius="8dp">
-
-                <TextView
-                    android:layout_gravity="center"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/sf_pro_display_semibold"
-                    android:text="Найти"
+                <LinearLayout
+                    android:id="@+id/anywhere"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            </androidx.cardview.widget.CardView>
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/hard_way"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/weekend">
 
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/anywhere" />
+
+                    <TextView
+                        android:id="@+id/tv_anywhere"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:paddingTop="4dp"
+                        android:minLines="2"
+                        android:text="@string/anywhere"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/weekend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/anywhere"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/hot_tickets">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/weekend" />
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:paddingTop="4dp"
+                        android:minLines="2"
+                        android:text="@string/weekend"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/hot_tickets"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/weekend"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/hot_tickets" />
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingTop="4dp"
+                        android:gravity="center_horizontal"
+                        android:minLines="2"
+                        android:text="@string/hot_tickets"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/recommendations_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_rec_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:backgroundTint="@color/gray_dark"
+                    app:cardCornerRadius="16dp">
+
+                    <LinearLayout
+                        android:id="@+id/istanbul_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="8dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginHorizontal="16dp"
+                                    android:layout_marginVertical="8dp"
+                                    android:src="@drawable/istanbul" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tv_istanbul"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/sf_pro_display_semibold"
+                                        android:text="@string/istanbul"
+                                        android:textColor="@color/white"
+                                        android:textSize="16sp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/placeholder_recommendations"
+                                        android:textColor="@color/divider" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_gravity="center"
+                                android:layout_marginHorizontal="16dp"
+                                android:layout_marginVertical="8dp"
+                                android:background="@color/divider" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/sochi_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginHorizontal="16dp"
+                                    android:layout_marginVertical="8dp"
+                                    android:src="@drawable/sochi" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tv_sochi"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/sf_pro_display_semibold"
+                                        android:text="@string/sochi"
+                                        android:textColor="@color/white"
+                                        android:textSize="16sp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/placeholder_recommendations"
+                                        android:textColor="@color/divider" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginVertical="8dp"
+                                android:layout_gravity="center"
+                                android:layout_marginHorizontal="16dp"
+                                android:background="@color/divider" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/phuket_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginHorizontal="16dp"
+                                    android:layout_marginVertical="8dp"
+                                    android:src="@drawable/phuket" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tv_phuket"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/sf_pro_display_semibold"
+                                        android:text="@string/phuket"
+                                        android:textColor="@color/white"
+                                        android:textSize="16sp" />
+
+                                    <TextView
+                                        android:id="@+id/tv_placeholder_rec"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/placeholder_recommendations"
+                                        android:textColor="@color/divider" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginVertical="8dp"
+                            android:layout_gravity="center"
+                            android:layout_marginHorizontal="16dp"
+                            android:background="@color/divider" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

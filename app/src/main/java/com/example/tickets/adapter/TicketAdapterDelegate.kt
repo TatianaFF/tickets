@@ -1,5 +1,6 @@
 package com.example.tickets.adapter
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
@@ -35,6 +36,7 @@ class TicketAdapterDelegate : DelegateAdapter<TicketItem, TicketAdapterDelegate.
     inner class TicketViewHolder(private val binding: ItemTicketBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        @SuppressLint("SetTextI18n")
         @RequiresApi(Build.VERSION_CODES.O)
         fun bind(item: TicketItem) {
             val ldtDeparture = stringToLocalDateTime(item.departureDate)
@@ -42,13 +44,13 @@ class TicketAdapterDelegate : DelegateAdapter<TicketItem, TicketAdapterDelegate.
 
             with(binding) {
                 tvPrice.text = NumberFormat.getInstance(Locale("ru")).format(item.price)
-                tvDepartureDate.text = addZero(ldtDeparture.hour) + ":" + addZero(ldtDeparture.minute)
-                tvArrivalDate.text = addZero(ldtArrival.hour) + ":" + addZero(ldtArrival.minute)
-                tvDepartureAirport.text = item.departureAirport
-                tvArrivalAirport.text = item.arrivalAirport
+                tvDepartureDate.text = addZero(ldtDeparture.hour) + ":" + addZero(ldtDeparture.minute) + " "
+                tvArrivalDate.text = addZero(ldtArrival.hour) + ":" + addZero(ldtArrival.minute) + " "
+                tvDepartureAirport.text = item.departureAirport + " "
+                tvArrivalAirport.text = item.arrivalAirport + " "
                 if (item.badge != null) {
                     badge.visibility = View.VISIBLE
-                    tvBadge.text = item.badge
+                    tvBadge.text = item.badge + " "
                 }
                 if (!item.hasTransfer) {
                     transfer.visibility = View.VISIBLE

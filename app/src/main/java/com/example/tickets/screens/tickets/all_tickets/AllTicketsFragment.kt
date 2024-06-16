@@ -1,5 +1,6 @@
 package com.example.tickets.screens.tickets.all_tickets
 
+import android.annotation.SuppressLint
 import android.content.Context
 import androidx.fragment.app.viewModels
 import android.os.Bundle
@@ -27,6 +28,7 @@ class AllTicketsFragment : Fragment() {
 
     private var cityFrom: String? = null
     private var cityTo: String? = null
+    private var dateTo: String? = null
 
     private val compositeAdapter by lazy {
         MainCompositeAdapter.Builder()
@@ -40,6 +42,7 @@ class AllTicketsFragment : Fragment() {
         arguments?.let {
             cityFrom = it.getString(CITY_FROM)
             cityTo = it.getString(CITY_TO)
+            dateTo = it.getString(DATE_TO)
         }
     }
 
@@ -64,9 +67,11 @@ class AllTicketsFragment : Fragment() {
         binding.recyclerTickets.adapter = compositeAdapter
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initValues() {
         binding.tvFrom.text = cityFrom
         binding.tvTo.text = cityTo
+        binding.tvDateTo.text = "$dateTo "
 
         binding.arrowBack.setOnClickListener { requireActivity().supportFragmentManager.popBackStack() }
     }
@@ -86,5 +91,6 @@ class AllTicketsFragment : Fragment() {
     companion object {
         private const val CITY_FROM = "cityFrom"
         private const val CITY_TO = "cityTo"
+        private const val DATE_TO = "dateTo"
     }
 }

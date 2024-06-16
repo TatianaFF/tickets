@@ -25,15 +25,21 @@
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/direct_flights_background" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:background="@color/background_bottom"
         app:itemTextColor="@color/tint_btm_selector"
         android:layout_width="match_parent"
         android:layout_height="54dp"
-        app:itemIconSize="20dp"
+        app:itemTextAppearanceActive="@style/BottomNavigationViewTextStyle"
+        app:itemTextAppearanceInactive="@style/BottomNavigationViewTextStyle"
         android:paddingHorizontal="16dp"
         app:labelVisibilityMode="labeled"
-        app:menu="@menu/btm_menu" />
+        app:menu="@menu/btm_menu"/>
 
 </LinearLayout>

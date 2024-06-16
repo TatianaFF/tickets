@@ -22,6 +22,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.PagerSnapHelper
+import com.example.tickets.MainActivity
 import com.example.tickets.R
 import com.example.tickets.adapter.DelegateAdapter
 import com.example.tickets.adapter.DelegateAdapterItem
@@ -32,10 +33,8 @@ import com.example.tickets.databinding.FragmentTicketsBinding
 import com.example.tickets.screens.tickets.search_dialog.SearchDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class TicketsFragment : Fragment() {
-
     private var _binding: FragmentTicketsBinding? = null
     private val binding get() = _binding!!
 
@@ -60,10 +59,10 @@ class TicketsFragment : Fragment() {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setTextWatcherEditFrom()
         setFocusListenerEditTo()
 
         setupAdapter()
@@ -81,100 +80,66 @@ class TicketsFragment : Fragment() {
         settings = requireContext().getSharedPreferences("settings", Context.MODE_PRIVATE)
         binding.editFrom.setText(settings.getString(CITY_FROM, ""))
 
-        binding.searchTickets.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putString("cityFrom", binding.editFrom.text.toString())
-            bundle.putString("cityTo", binding.editTo.text.toString())
-
-            navController.navigate(
-                R.id.ticketRecommendationsFragment,
-                bundle
-            )
-        }
-
-        binding.includeHints.istanbulContainer.setOnClickListener { binding.editTo.setText(binding.includeHints.tvIstanbul.text) }
-        binding.includeHints.sochiContainer.setOnClickListener { binding.editTo.setText(binding.includeHints.tvSochi.text) }
-        binding.includeHints.phuketContainer.setOnClickListener { binding.editTo.setText(binding.includeHints.tvPhuket.text) }
-
-        binding.includeHints.hardWay.setOnClickListener {
-            navController.navigate(R.id.action_tickets_fragment_to_hardWayFragment)
-        }
-
-        binding.includeHints.weekend.setOnClickListener {
-            navController.navigate(R.id.action_tickets_fragment_to_weekendFragment)
-        }
-
-        binding.includeHints.hotTickets.setOnClickListener {
-            navController.navigate(R.id.action_tickets_fragment_to_hotTicketsFragment)
-        }
-
-        binding.includeHints.anywhere.setOnClickListener {
-            binding.editTo.setText(binding.includeHints.tvAnywhere.text)
-        }
-
 //        binding.includeHints.clearCityTo.setOnClickListener {
 //            binding.editTo.setText("")
 //        }
     }
 
-    private fun setTextWatcherEditFrom() {
-        binding.editFrom.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-                settings.edit().putString(CITY_FROM, s.toString()).apply()
-            }
-
-        })
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun setFocusListenerEditTo() {
-        binding.editTo.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
+        binding.editTo.onFocusChangeListener = OnFocusChangeListener { view, hasFocus ->
             if (hasFocus) {
-
-                binding.includeHints.root.apply {
-                    alpha = 0f
-
-                    visibility = View.VISIBLE
-
-                    animate()
-                        .alpha(1f)
-                        .setDuration(300)
-                        .setListener(object : AnimatorListenerAdapter() {
-                            override fun onAnimationEnd(animation: Animator) {
-                                super.onAnimationEnd(animation)
-                                binding.scrollview.post(Runnable {
-                                    binding.scrollview.smoothScrollTo(
-                                        0,
-                                        binding.titleContainer.height
-                                    )
-                                })
-                            }
-                        })
-                }
-
-            } else {
-                binding.includeHints.root.apply {
-                    animate()
-                        .alpha(0f)
-                        .setDuration(300)
-                        .setListener(object : AnimatorListenerAdapter() {
-                            override fun onAnimationEnd(animation: Animator) {
-                                super.onAnimationEnd(animation)
-                                visibility = View.GONE
-                            }
-                        })
-                }
+                dialog = SearchDialogFragment.newInstance(binding.editFrom.text.toString())
+                dialog.show(this.parentFragmentManager, "tag")
             }
         }
     }
+
+    override fun onPause() {
+        super.onPause()
+        settings.edit().putString(CITY_FROM, binding.editFrom.text.toString()).apply()
+    }
+
+//    @RequiresApi(Build.VERSION_CODES.O)
+//    private fun setFocusListenerEditTo() {
+//        binding.editTo.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
+//            if (hasFocus) {
+//
+//                binding.includeHints.root.apply {
+//                    alpha = 0f
+//
+//                    visibility = View.VISIBLE
+//
+//                    animate()
+//                        .alpha(1f)
+//                        .setDuration(300)
+//                        .setListener(object : AnimatorListenerAdapter() {
+//                            override fun onAnimationEnd(animation: Animator) {
+//                                super.onAnimationEnd(animation)
+//                                binding.scrollview.post(Runnable {
+//                                    binding.scrollview.smoothScrollTo(
+//                                        0,
+//                                        binding.titleContainer.height
+//                                    )
+//                                })
+//                            }
+//                        })
+//                }
+//
+//            } else {
+//                binding.includeHints.root.apply {
+//                    animate()
+//                        .alpha(0f)
+//                        .setDuration(300)
+//                        .setListener(object : AnimatorListenerAdapter() {
+//                            override fun onAnimationEnd(animation: Animator) {
+//                                super.onAnimationEnd(animation)
+//                                visibility = View.GONE
+//                            }
+//                        })
+//                }
+//            }
+//        }
+//    }
 
     private fun setupAdapter() {
         binding.recyclerOffers.adapter = compositeAdapter

@@ -1,29 +1,13 @@
 package com.example.tickets.screens.tickets.hints
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
-import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
-import com.example.tickets.R
 import com.example.tickets.databinding.FragmentHardWayBinding
+import com.example.tickets.screens.BaseFragment
 
-class HardWayFragment : Fragment() {
+class HardWayFragment : BaseFragment<FragmentHardWayBinding>() {
 
-    private var _binding: FragmentHardWayBinding? = null
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentHardWayBinding.inflate(inflater, container, false)
-
-        return binding.root
-    }
+    override fun getViewBinding() = FragmentHardWayBinding.inflate(layoutInflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,10 +15,5 @@ class HardWayFragment : Fragment() {
         binding.arrowBack.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

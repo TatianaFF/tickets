@@ -1,27 +1,13 @@
 package com.example.tickets.screens.tickets.hints
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import com.example.tickets.R
-import com.example.tickets.databinding.FragmentHardWayBinding
 import com.example.tickets.databinding.FragmentHotTicketsBinding
+import com.example.tickets.screens.BaseFragment
 
-class HotTicketsFragment : Fragment() {
+class HotTicketsFragment : BaseFragment<FragmentHotTicketsBinding>() {
 
-    private var _binding: FragmentHotTicketsBinding? = null
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentHotTicketsBinding.inflate(inflater, container, false)
-
-        return binding.root
-    }
+    override fun getViewBinding() = FragmentHotTicketsBinding.inflate(layoutInflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -29,10 +15,5 @@ class HotTicketsFragment : Fragment() {
         binding.arrowBack.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

@@ -4,32 +4,28 @@ import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.annotation.RequiresApi
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.tickets.R
 import com.example.tickets.databinding.FragmentTicketRecommendationsBinding
+import com.example.tickets.screens.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.NumberFormat
 import java.util.Calendar
 import java.util.Locale
 
 @AndroidEntryPoint
-class TicketRecommendationsFragment : Fragment() {
-
-    private var _binding: FragmentTicketRecommendationsBinding? = null
-    private val binding get() = _binding!!
-
+class TicketRecommendationsFragment : BaseFragment<FragmentTicketRecommendationsBinding>() {
     private val viewModel: TicketRecommendationsViewModel by viewModels()
 
     private var cityFrom: String? = null
     private var cityTo: String? = null
+
+    override fun getViewBinding() = FragmentTicketRecommendationsBinding.inflate(layoutInflater)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,22 +36,11 @@ class TicketRecommendationsFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentTicketRecommendationsBinding.inflate(inflater, container, false)
-
-        return binding.root
-    }
-
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val navController = Navigation.findNavController(requireActivity(), R.id.nav_fragment)
-
-        initValues(navController)
+        initValues()
         observeViewModel()
     }
 
@@ -79,23 +64,15 @@ class TicketRecommendationsFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun initValues(navController: NavController) {
+    private fun initValues() {
+        val navController = Navigation.findNavController(requireActivity(), R.id.nav_fragment)
+
         binding.editFrom.setText(cityFrom)
         binding.editTo.setText(cityTo)
 
         binding.arrowBack.setOnClickListener { requireActivity().supportFragmentManager.popBackStack() }
 
-        binding.showAllTickets.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putString(CITY_FROM, binding.editFrom.text.toString())
-            bundle.putString(CITY_TO, binding.editTo.text.toString())
-            bundle.putString(DATE_TO, viewModel.dateTo.value)
-
-            navController.navigate(
-                R.id.allTicketsFragment,
-                bundle
-            )
-        }
+        binding.showAllTickets.setOnClickListener { onClickShowAllTickets(navController) }
 
         binding.swap.setOnClickListener {
             binding.editFrom.text = binding.editTo.text.also { binding.editTo.text = binding.editFrom.text }
@@ -104,65 +81,81 @@ class TicketRecommendationsFragment : Fragment() {
         binding.tvDayMonth.text = getDateMonth()
         binding.tvDayWeek.text = getDayWeek()
 
-        binding.cardDateTo.setOnClickListener {
-            val c = Calendar.getInstance()
+        binding.cardDateTo.setOnClickListener { onClickCardDateTo() }
 
-            val year = c.get(Calendar.YEAR)
-            val month = c.get(Calendar.MONTH)
-            val day = c.get(Calendar.DAY_OF_MONTH)
+        binding.cardDateFrom.setOnClickListener { onClickCardDateFrom() }
+    }
 
-            val daysOfWeekNames = arrayOf(
-                "вс",
-                "пн",
-                "вт",
-                "ср",
-                "чт",
-                "пт",
-                "сб"
-            )
+    private fun onClickShowAllTickets(navController: NavController) {
+        val bundle = Bundle()
+        bundle.putString(CITY_FROM, binding.editFrom.text.toString())
+        bundle.putString(CITY_TO, binding.editTo.text.toString())
+        bundle.putString(DATE_TO, viewModel.dateTo.value)
 
-            val datePickerDialog = DatePickerDialog(
-                requireContext(),
-                { view, year, monthOfYear, dayOfMonth ->
-                    val calendar = Calendar.getInstance()
-                    calendar.apply {
-                        set(year, monthOfYear, dayOfMonth)
-                    }
-                    val monthNew = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG_FORMAT, Locale("ru"))
-                    binding.tvDayMonth.text = dayOfMonth.toString() + " " + monthNew.take(3)
+        navController.navigate(
+            R.id.allTicketsFragment,
+            bundle
+        )
+    }
 
-                    binding.tvDayWeek.text = daysOfWeekNames[calendar[Calendar.DAY_OF_WEEK]-1]
+    private fun onClickCardDateFrom() {
+        val c = Calendar.getInstance()
 
-                    viewModel.setDateTo("$dayOfMonth $monthNew")
-                },
-                year,
-                month,
-                day
-            )
-
-            datePickerDialog.show()
-        }
-
-        binding.cardDateFrom.setOnClickListener {
-            val c = Calendar.getInstance()
-
-            val year = c.get(Calendar.YEAR)
-            val month = c.get(Calendar.MONTH)
-            val day = c.get(Calendar.DAY_OF_MONTH)
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
 
 
-            val datePickerDialog = DatePickerDialog(
-                requireContext(),
-                { view, year, monthOfYear, dayOfMonth ->
+        val datePickerDialog = DatePickerDialog(
+            requireContext(),
+            { view, year, monthOfYear, dayOfMonth ->
 
-                },
-                year,
-                month,
-                day
-            )
+            },
+            year,
+            month,
+            day
+        )
 
-            datePickerDialog.show()
-        }
+        datePickerDialog.show()
+    }
+
+    private fun onClickCardDateTo() {
+        val c = Calendar.getInstance()
+
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+
+        val daysOfWeekNames = arrayOf(
+            "вс",
+            "пн",
+            "вт",
+            "ср",
+            "чт",
+            "пт",
+            "сб"
+        )
+
+        val datePickerDialog = DatePickerDialog(
+            requireContext(),
+            { view, year, monthOfYear, dayOfMonth ->
+                val calendar = Calendar.getInstance()
+                calendar.apply {
+                    set(year, monthOfYear, dayOfMonth)
+                }
+                val monthNew = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG_FORMAT, Locale("ru"))
+                binding.tvDayMonth.text = dayOfMonth.toString() + " " + monthNew.take(3)
+
+                binding.tvDayWeek.text = daysOfWeekNames[calendar[Calendar.DAY_OF_WEEK]-1]
+
+                viewModel.setDateTo("$dayOfMonth $monthNew")
+            },
+            year,
+            month,
+            day
+        )
+
+        datePickerDialog.show()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -198,11 +191,6 @@ class TicketRecommendationsFragment : Fragment() {
         val dayWeek = daysOfWeekNames[calendar[Calendar.DAY_OF_WEEK]-1]
 
         return "$dayWeek "
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     companion object {

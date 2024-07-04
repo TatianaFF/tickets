@@ -1,22 +1,11 @@
 package com.example.tickets
 
-import android.content.Context
 import android.os.Bundle
 import android.os.StrictMode
-import android.view.View
-import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.preferencesDataStore
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.Navigation
 import androidx.navigation.ui.setupWithNavController
 import com.example.tickets.databinding.ActivityMainBinding
-import com.example.tickets.screens.tickets.TicketsFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -41,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         StrictMode.setThreadPolicy(policy)
     }
 
-    fun setNavigation() {
+    private fun setNavigation() {
         val navController = Navigation.findNavController(this, R.id.nav_fragment)
 
         binding.navView.setupWithNavController(navController)

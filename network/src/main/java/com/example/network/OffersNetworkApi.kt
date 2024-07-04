@@ -7,13 +7,13 @@ import com.google.gson.annotations.SerializedName
 import retrofit2.http.GET
 
 interface OffersNetworkApi {
-    @GET("214a1713-bac0-4853-907c-a1dfc3cd05fd")
+    @GET("https://drive.usercontent.google.com/u/0/uc?id=1o1nX3uFISrG1gR-jr_03Qlu4_KEZWhav&export=download")
     suspend fun getOffers(): OffersResponse
 
-    @GET("7e55bf02-89ff-4847-9eb7-7d83ef884017")
+    @GET("https://drive.usercontent.google.com/u/0/uc?id=13WhZ5ahHBwMiHRXxWPq-bYlRVRwAujta&export=download")
     suspend fun getRecommendedFlights(): RecommendedFlightsResponse
 
-    @GET("670c3d56-7f03-4237-9e34-d437a9e56ebf")
+    @GET("https://drive.google.com/uc?export=download&id=1HogOsz4hWkRwco4kud3isZHFQLUAwNBA")
     suspend fun getTickets(): TicketsResponse
 }
 

@@ -1,4 +1,4 @@
-package com.example.tickets.screens.tickets.search_dialog
+package com.example.tickets.screens.search_dialog
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData

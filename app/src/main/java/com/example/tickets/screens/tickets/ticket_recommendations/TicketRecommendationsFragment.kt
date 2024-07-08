@@ -2,6 +2,8 @@ package com.example.tickets.screens.tickets.ticket_recommendations
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -13,6 +15,10 @@ import androidx.navigation.Navigation
 import com.example.tickets.R
 import com.example.tickets.databinding.FragmentTicketRecommendationsBinding
 import com.example.tickets.screens.BaseFragment
+import com.example.tickets.utils.CITY_FROM
+import com.example.tickets.utils.CITY_TO
+import com.example.tickets.utils.DATE_TO
+import com.example.tickets.utils.SETTINGS
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.NumberFormat
 import java.util.Calendar
@@ -22,19 +28,9 @@ import java.util.Locale
 class TicketRecommendationsFragment : BaseFragment<FragmentTicketRecommendationsBinding>() {
     private val viewModel: TicketRecommendationsViewModel by viewModels()
 
-    private var cityFrom: String? = null
-    private var cityTo: String? = null
+    private lateinit var settings: SharedPreferences
 
     override fun getViewBinding() = FragmentTicketRecommendationsBinding.inflate(layoutInflater)
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        arguments?.let {
-            cityFrom = it.getString(CITY_FROM)
-            cityTo = it.getString(CITY_TO)
-        }
-    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -67,15 +63,21 @@ class TicketRecommendationsFragment : BaseFragment<FragmentTicketRecommendations
     private fun initValues() {
         val navController = Navigation.findNavController(requireActivity(), R.id.nav_fragment)
 
-        binding.editFrom.setText(cityFrom)
-        binding.editTo.setText(cityTo)
+        settings = requireContext().getSharedPreferences(SETTINGS, Context.MODE_PRIVATE)
 
-        binding.arrowBack.setOnClickListener { requireActivity().supportFragmentManager.popBackStack() }
+        binding.editFrom.setText(settings.getString(CITY_FROM, ""))
+        binding.editTo.setText(settings.getString(CITY_TO, ""))
+
+        binding.arrowBack.setOnClickListener { navController.navigate(R.id.action_ticketRecommendationsFragment_to_tickets_fragment) }
 
         binding.showAllTickets.setOnClickListener { onClickShowAllTickets(navController) }
 
         binding.swap.setOnClickListener {
             binding.editFrom.text = binding.editTo.text.also { binding.editTo.text = binding.editFrom.text }
+            settings.edit()
+                .putString(CITY_TO, settings.getString(CITY_FROM, ""))
+                .putString(CITY_FROM, settings.getString(CITY_TO, ""))
+                .apply()
         }
 
         binding.tvDayMonth.text = getDateMonth()
@@ -88,14 +90,9 @@ class TicketRecommendationsFragment : BaseFragment<FragmentTicketRecommendations
 
     private fun onClickShowAllTickets(navController: NavController) {
         val bundle = Bundle()
-        bundle.putString(CITY_FROM, binding.editFrom.text.toString())
-        bundle.putString(CITY_TO, binding.editTo.text.toString())
         bundle.putString(DATE_TO, viewModel.dateTo.value)
 
-        navController.navigate(
-            R.id.allTicketsFragment,
-            bundle
-        )
+        navController.navigate(R.id.allTicketsFragment, bundle)
     }
 
     private fun onClickCardDateFrom() {
@@ -191,11 +188,5 @@ class TicketRecommendationsFragment : BaseFragment<FragmentTicketRecommendations
         val dayWeek = daysOfWeekNames[calendar[Calendar.DAY_OF_WEEK]-1]
 
         return "$dayWeek "
-    }
-
-    companion object {
-        private const val CITY_FROM = "cityFrom"
-        private const val CITY_TO = "cityTo"
-        private const val DATE_TO = "dateTo"
     }
 }

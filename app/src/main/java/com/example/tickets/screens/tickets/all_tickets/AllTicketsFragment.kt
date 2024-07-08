@@ -1,6 +1,8 @@
 package com.example.tickets.screens.tickets.all_tickets
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -9,12 +11,18 @@ import com.example.tickets.adapter.MainCompositeAdapter
 import com.example.tickets.adapter.TicketAdapterDelegate
 import com.example.tickets.databinding.FragmentAllTicketsBinding
 import com.example.tickets.screens.BaseFragment
+import com.example.tickets.utils.CITY_FROM
+import com.example.tickets.utils.CITY_TO
+import com.example.tickets.utils.DATE_TO
+import com.example.tickets.utils.SETTINGS
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class AllTicketsFragment : BaseFragment<FragmentAllTicketsBinding>() {
 
     private val viewModel: AllTicketsViewModel by viewModels()
+
+    private lateinit var settings: SharedPreferences
 
     private var cityFrom: String? = null
     private var cityTo: String? = null
@@ -32,8 +40,6 @@ class AllTicketsFragment : BaseFragment<FragmentAllTicketsBinding>() {
         super.onCreate(savedInstanceState)
 
         arguments?.let {
-            cityFrom = it.getString(CITY_FROM)
-            cityTo = it.getString(CITY_TO)
             dateTo = it.getString(DATE_TO)
         }
     }
@@ -52,6 +58,11 @@ class AllTicketsFragment : BaseFragment<FragmentAllTicketsBinding>() {
 
     @SuppressLint("SetTextI18n")
     private fun initValues() {
+        settings = requireContext().getSharedPreferences(SETTINGS, Context.MODE_PRIVATE)
+
+        cityFrom = settings.getString(CITY_FROM, "")
+        cityTo = settings.getString(CITY_TO, "")
+
         binding.tvFrom.text = cityFrom
         binding.tvTo.text = cityTo
         binding.tvDateTo.text = "$dateTo "
@@ -64,11 +75,5 @@ class AllTicketsFragment : BaseFragment<FragmentAllTicketsBinding>() {
             it ?: return@Observer
             compositeAdapter.submitList(it)
         })
-    }
-
-    companion object {
-        private const val CITY_FROM = "cityFrom"
-        private const val CITY_TO = "cityTo"
-        private const val DATE_TO = "dateTo"
     }
 }

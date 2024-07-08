@@ -1,11 +1,15 @@
 package com.example.tickets
 
+import android.content.Context
 import android.os.Bundle
 import android.os.StrictMode
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import androidx.navigation.ui.setupWithNavController
 import com.example.tickets.databinding.ActivityMainBinding
+import com.example.tickets.utils.CITY_FROM
+import com.example.tickets.utils.CITY_TO
+import com.example.tickets.utils.SETTINGS
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -56,5 +60,15 @@ class MainActivity : AppCompatActivity() {
             true
         }
         binding.navView.itemIconTintList = null
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        val settings = application.getSharedPreferences(SETTINGS, Context.MODE_PRIVATE)
+        settings.edit()
+            .putString(CITY_FROM, "")
+            .putString(CITY_TO, "")
+            .apply()
     }
 }

@@ -68,6 +68,7 @@
                         <ImageView
                             android:src="@drawable/search"
                             android:layout_weight="1"
+                            android:tint="@color/white"
                             android:layout_gravity="center"
                             android:layout_width="0dp"
                             android:layout_height="24dp"/>
@@ -77,12 +78,11 @@
                             android:padding="4dp"
                             android:paddingEnd="16dp"
                             android:orientation="vertical"
-                            android:background="@color/gray_medium"
                             android:layout_width="0dp"
                             android:layout_height="match_parent">
 
-                            <EditText
-                                android:id="@+id/edit_from"
+                            <TextView
+                                android:id="@+id/tv_from"
                                 android:digits="абвгдеёжзийклмнопрстуфхцчшщъыьэюя АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
                                 android:paddingTop="8dp"
                                 android:paddingBottom="8dp"
@@ -100,8 +100,8 @@
                                 android:layout_height="1dp"
                                 android:background="@color/divider" />
 
-                            <EditText
-                                android:id="@+id/edit_to"
+                            <TextView
+                                android:id="@+id/tv_to"
                                 android:digits="абвгдеёжзийклмнопрстуфхцчшщъыьэюя АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
                                 android:paddingTop="8dp"
                                 android:paddingBottom="8dp"
@@ -122,30 +122,6 @@
             </androidx.cardview.widget.CardView>
 
         </LinearLayout>
-
-        <include android:id="@+id/include_hints"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone"
-            layout="@layout/fragment_hints"/>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/search_tickets"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_margin="16dp"
-            android:backgroundTint="@color/blue_text"
-            app:cardCornerRadius="8dp">
-
-            <TextView
-                android:layout_gravity="center"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:fontFamily="@font/sf_pro_display_semibold"
-                android:text="Найти"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </androidx.cardview.widget.CardView>
 
         <LinearLayout
             android:padding="16dp"

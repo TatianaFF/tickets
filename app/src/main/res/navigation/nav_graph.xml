@@ -9,18 +9,13 @@
         android:id="@+id/tickets_fragment"
         android:name="com.example.tickets.screens.tickets.TicketsFragment"
         android:label="TicketsFragment" >
-        <action
-            android:id="@+id/action_tickets_fragment_to_hardWayFragment"
-            app:destination="@id/hardWayFragment" />
-        <action
-            android:id="@+id/action_tickets_fragment_to_weekendFragment"
-            app:destination="@id/weekendFragment" />
-        <action
-            android:id="@+id/action_tickets_fragment_to_hotTicketsFragment"
-            app:destination="@id/hotTicketsFragment" />
+
         <action
             android:id="@+id/action_tickets_fragment_to_ticketRecommendationsFragment"
             app:destination="@id/ticketRecommendationsFragment" />
+        <action
+            android:id="@+id/action_tickets_fragment_to_searchCityToFragment"
+            app:destination="@id/searchCityFragment" />
     </fragment>
     <fragment
         android:id="@+id/hotels_fragment"
@@ -60,18 +55,12 @@
         android:label="fragment_ticket_recommendations"
         tools:layout="@layout/fragment_ticket_recommendations" >
 
-        <argument
-            android:name="cityFrom"
-            app:argType="string"
-            android:defaultValue=""/>
-
-        <argument
-            android:name="cityTo"
-            app:argType="string"
-            android:defaultValue=""/>
         <action
             android:id="@+id/action_ticketRecommendationsFragment_to_allTicketsFragment"
             app:destination="@id/allTicketsFragment" />
+        <action
+            android:id="@+id/action_ticketRecommendationsFragment_to_tickets_fragment"
+            app:destination="@id/tickets_fragment" />
 
     </fragment>
     <fragment
@@ -80,15 +69,35 @@
         android:label="fragment_all_tickets"
         tools:layout="@layout/fragment_all_tickets" >
 
-        <argument
-            android:name="cityFrom"
-            app:argType="string"
-            android:defaultValue=""/>
+<!--        <argument-->
+<!--            android:name="cityFrom"-->
+<!--            app:argType="string"-->
+<!--            android:defaultValue=""/>-->
 
-        <argument
-            android:name="cityTo"
-            app:argType="string"
-            android:defaultValue=""/>
+<!--        <argument-->
+<!--            android:name="cityTo"-->
+<!--            app:argType="string"-->
+<!--            android:defaultValue=""/>-->
+    </fragment>
+    <fragment
+        android:id="@+id/searchCityFragment"
+        android:name="com.example.tickets.screens.tickets.search_city_from.SearchCityFragment"
+        android:label="SearchCityToFragment" >
+        <action
+            android:id="@+id/action_searchCityFragment_to_tickets_fragment"
+            app:destination="@id/tickets_fragment" />
+        <action
+            android:id="@+id/action_searchCityFragment_to_ticketRecommendationsFragment"
+            app:destination="@id/ticketRecommendationsFragment" />
+        <action
+            android:id="@+id/action_searchCityFragment_to_hardWayFragment"
+            app:destination="@id/hardWayFragment" />
+        <action
+            android:id="@+id/action_searchCityFragment_to_weekendFragment"
+            app:destination="@id/weekendFragment" />
+        <action
+            android:id="@+id/action_searchCityFragment_to_hotTicketsFragment"
+            app:destination="@id/hotTicketsFragment" />
     </fragment>
 
 </navigation>

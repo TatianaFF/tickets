@@ -1,4 +1,4 @@
-package com.example.tickets.screens.tickets.search_dialog
+package com.example.tickets.screens.search_dialog
 
 import android.app.Dialog
 import android.os.Bundle
@@ -79,20 +79,20 @@ class SearchDialogFragment : BottomSheetDialogFragment() {
 
         val navController = Navigation.findNavController(requireActivity(), R.id.nav_fragment)
 
-        binding.hardWay.setOnClickListener {
-            navController.navigate(R.id.action_tickets_fragment_to_hardWayFragment)
-            dismiss()
-        }
-
-        binding.weekend.setOnClickListener {
-            navController.navigate(R.id.action_tickets_fragment_to_weekendFragment)
-            dismiss()
-        }
-
-        binding.hotTickets.setOnClickListener {
-            navController.navigate(R.id.action_tickets_fragment_to_hotTicketsFragment)
-            dismiss()
-        }
+//        binding.hardWay.setOnClickListener {
+//            navController.navigate(R.id.action_tickets_fragment_to_hardWayFragment)
+//            dismiss()
+//        }
+//
+//        binding.weekend.setOnClickListener {
+//            navController.navigate(R.id.action_tickets_fragment_to_weekendFragment)
+//            dismiss()
+//        }
+//
+//        binding.hotTickets.setOnClickListener {
+//            navController.navigate(R.id.action_tickets_fragment_to_hotTicketsFragment)
+//            dismiss()
+//        }
 
         binding.anywhere.setOnClickListener {
             binding.editTo.setText(binding.tvAnywhere.text)
